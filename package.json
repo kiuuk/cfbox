@@ -1,0 +1,7 @@
+{
+  "name": "cfbox",
+  "private": true,
+  "dependencies": {
+    "vue-cli": "^2.9.6"
+  }
+}
