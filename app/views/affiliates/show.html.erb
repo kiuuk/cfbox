@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @affiliate.name %>
+</p>
+
+<p>
+  <strong>Password:</strong>
+  <%= @affiliate.password %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @affiliate.address %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @affiliate.phone %>
+</p>
+
+<p>
+  <strong>Picture:</strong>
+  <%= @affiliate.picture %>
+</p>
+
+<p>
+  <strong>Website:</strong>
+  <%= @affiliate.website %>
+</p>
+
+<p>
+  <strong>Sns:</strong>
+  <%= @affiliate.sns %>
+</p>
+
+<%= link_to 'Edit', edit_affiliate_path(@affiliate) %> |
+<%= link_to 'Back', affiliates_path %>

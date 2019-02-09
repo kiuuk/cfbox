@@ -48,16 +48,19 @@
 <row name="name" null="0" autoincrement="0">
 <datatype>CHAR</datatype>
 <default>'NULL'</default></row>
+<row name="password" null="0" autoincrement="0">
+<datatype>CHAR</datatype>
+<default>'NULL'</default></row>
+<row name="affiliate_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="affiliates" row="id" />
+</row>
 <row name="phone" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="picture" null="1" autoincrement="0">
 <datatype>BYTEA</datatype>
 <default>NULL</default></row>
-<row name="affiliate" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="affiliates" row="id" />
-</row>
 <row name="gender" null="1" autoincrement="0">
 <datatype>CHAR</datatype>
 <default>NULL</default></row>
@@ -68,11 +71,14 @@
 <part>id</part>
 </key>
 </table>
-<table x="432" y="46" name="affiliates">
+<table x="437" y="125" name="affiliates">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="name" null="0" autoincrement="0">
+<datatype>CHAR</datatype>
+<default>'NULL'</default></row>
+<row name="password" null="0" autoincrement="0">
 <datatype>CHAR</datatype>
 <default>'NULL'</default></row>
 <row name="address" null="0" autoincrement="0">
@@ -90,49 +96,88 @@
 <row name="sns" null="1" autoincrement="0">
 <datatype>CHAR</datatype>
 <default>NULL</default></row>
-<row name="wod" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="wods" row="id" />
-</row>
-<row name="notice" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="notices" row="id" />
-</row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="1047" y="41" name="wods">
+<table x="1142" y="104" name="wods">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="name" null="0" autoincrement="0">
 <datatype>CHAR</datatype>
 <default>'NULL'</default></row>
-<row name="named" null="1" autoincrement="0">
-<datatype>CHAR</datatype>
-<default>NULL</default></row>
 <row name="score" null="0" autoincrement="0">
 <datatype>CHAR</datatype>
 <default>'NULL'</default></row>
+<row name="category" null="1" autoincrement="0">
+<datatype>CHAR</datatype>
+<default>NULL</default></row>
 <row name="description" null="1" autoincrement="0">
 <datatype>TEXT</datatype>
 <default>NULL</default></row>
+<row name="movement_id_1" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="movements" row="id" />
+</row>
+<row name="movement_id_2" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="movements" row="id" />
+</row>
+<row name="movement_id_3" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="movements" row="id" />
+</row>
+<row name="movement_id_4" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="movements" row="id" />
+</row>
+<row name="movement_id_5" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="movements" row="id" />
+</row>
+<row name="movement_id_6" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="movements" row="id" />
+</row>
+<row name="movement_id_7" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="movements" row="id" />
+</row>
+<row name="movement_id_8" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="movements" row="id" />
+</row>
+<row name="movement_id_9" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="movements" row="id" />
+</row>
+<row name="movement_id_10" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="movements" row="id" />
+</row>
+<row name="movement_id_11" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="movements" row="id" />
+</row>
+<row name="movement_id_12" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="movements" row="id" />
+</row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="838" y="462" name="movements">
+<table x="883" y="421" name="movements">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="name" null="0" autoincrement="0">
 <datatype>CHAR</datatype>
 <default>'NULL'</default></row>
-<row name="wod" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="wods" row="id" />
-</row>
+<row name="equipment" null="1" autoincrement="0">
+<datatype>CHAR</datatype>
+<default>NULL</default></row>
 <row name="link" null="1" autoincrement="0">
 <datatype>BYTEA</datatype>
 <default>NULL</default></row>
@@ -140,28 +185,28 @@
 <part>id</part>
 </key>
 </table>
-<table x="660" y="405" name="pr">
+<table x="681" y="411" name="pr">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="movement" null="1" autoincrement="0">
+<row name="movement_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="movements" row="id" />
 </row>
-<row name="user" null="0" autoincrement="0">
+<row name="rm" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>1</default></row>
+<row name="user_id" null="0" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="users" row="id" />
-</row>
-<row name="affiliate" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="affiliates" row="id" />
 </row>
 <row name="record" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="rm" null="0" autoincrement="0">
+<row name="affiliate_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
-<default>1</default></row>
+<default>NULL</default><relation table="affiliates" row="id" />
+</row>
 <row name="date" null="1" autoincrement="0">
 <datatype>DATE</datatype>
 <default>NULL</default></row>
@@ -172,25 +217,25 @@
 <part>id</part>
 </key>
 </table>
-<table x="784" y="213" name="records">
+<table x="845" y="158" name="records">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="wod" null="1" autoincrement="0">
+<row name="wod_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="wods" row="id" />
 </row>
-<row name="user" null="0" autoincrement="0">
+<row name="user_id" null="0" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="users" row="id" />
-</row>
-<row name="affiliate" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="affiliates" row="id" />
 </row>
 <row name="record" null="0" autoincrement="0">
 <datatype>CHAR</datatype>
 <default>'NULL'</default></row>
+<row name="affiliate_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="affiliates" row="id" />
+</row>
 <row name="date" null="0" autoincrement="0">
 <datatype>DATE</datatype>
 <default>'NULL'</default></row>
@@ -201,10 +246,14 @@
 <part>id</part>
 </key>
 </table>
-<table x="192" y="87" name="notices">
+<table x="197" y="87" name="notices">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
+<row name="affiliate_id" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="affiliates" row="id" />
+</row>
 <row name="subject" null="0" autoincrement="0">
 <datatype>CHAR</datatype>
 <default>'NULL'</default></row>
