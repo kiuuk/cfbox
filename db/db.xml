@@ -41,14 +41,17 @@
     <type label="Inet CIDR Addr" length="0" sql="CIDR" quote="'"/>
     <type label="Geometry" length="0" sql="GEOMETRY" quote="'"/>
   </group>
-</datatypes><table x="212" y="407" name="users">
+</datatypes><table x="230" y="403" name="users">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="name" null="0" autoincrement="0">
+<row name="userid" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="password" null="0" autoincrement="0">
 <datatype>CHAR</datatype>
 <default>'NULL'</default></row>
-<row name="password" null="0" autoincrement="0">
+<row name="name" null="0" autoincrement="0">
 <datatype>CHAR</datatype>
 <default>'NULL'</default></row>
 <row name="affiliate_id" null="1" autoincrement="0">
@@ -56,7 +59,7 @@
 <default>NULL</default><relation table="affiliates" row="id" />
 </row>
 <row name="phone" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
+<datatype>CHAR</datatype>
 <default>NULL</default></row>
 <row name="picture" null="1" autoincrement="0">
 <datatype>BYTEA</datatype>
@@ -71,22 +74,25 @@
 <part>id</part>
 </key>
 </table>
-<table x="437" y="125" name="affiliates">
+<table x="452" y="91" name="affiliates">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="name" null="0" autoincrement="0">
+<row name="affiliateid" null="0" autoincrement="0">
 <datatype>CHAR</datatype>
 <default>'NULL'</default></row>
 <row name="password" null="0" autoincrement="0">
+<datatype>CHAR</datatype>
+<default>'NULL'</default></row>
+<row name="name" null="0" autoincrement="0">
 <datatype>CHAR</datatype>
 <default>'NULL'</default></row>
 <row name="address" null="0" autoincrement="0">
 <datatype>VARCHAR</datatype>
 <default>'NULL'</default></row>
 <row name="phone" null="0" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
+<datatype>CHAR</datatype>
+<default>'NULL'</default></row>
 <row name="picture" null="1" autoincrement="0">
 <datatype>BYTEA</datatype>
 <default>NULL</default></row>
