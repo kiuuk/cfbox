@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   # has_secure_password
-  belongs_to :affiliate
+  has_many :affiliate
 
   validates :userid, :password, :name, presence: true
 end
