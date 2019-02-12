@@ -22,7 +22,7 @@
           <td>{{user.userid}}</td>
           <td>{{user.password}}</td>
           <td>
-            <a href="#" @click="selectUser(user)" :title="user.name">{{user.name}}</a>
+            <a :href="'/users/' + user.id" :title="user.name">{{user.name}}</a>
           </td>
           <td>{{user.affiliate_id}}</td>
           <td>{{user.phone}}</td>
@@ -56,11 +56,6 @@ export default {
         this.errored = true;
       })
       .finally(() => (this.loading = false));
-  },
-  methods: {
-    selectUser(user) {
-      window.location.href = "/users/" + user.id;
-    }
   }
 };
 </script>
