@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <p>{{ message }}</p>
+    <a href="/users">users</a>
   </div>
 </template>
 
