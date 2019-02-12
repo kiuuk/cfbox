@@ -12,7 +12,7 @@ console.log("Hello World from Webpacker");
 import Vue from "vue";
 import App from "../app.vue";
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("turbolinks:load", () => {
   const el = document.body.appendChild(document.createElement("hello"));
   const app = new Vue({
     el,

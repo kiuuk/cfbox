@@ -21,7 +21,7 @@ class UsersTest < ApplicationSystemTestCase
     fill_in "Password", with: @user.password
     fill_in "Phone", with: @user.phone
     fill_in "Picture", with: @user.picture
-    fill_in "Uesrid", with: @user.uesrid
+    fill_in "userid", with: @user.userid
     click_on "Create User"
 
     assert_text "User was successfully created"
@@ -39,7 +39,7 @@ class UsersTest < ApplicationSystemTestCase
     fill_in "Password", with: @user.password
     fill_in "Phone", with: @user.phone
     fill_in "Picture", with: @user.picture
-    fill_in "Uesrid", with: @user.uesrid
+    fill_in "userid", with: @user.userid
     click_on "Update User"
 
     assert_text "User was successfully updated"
