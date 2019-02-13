@@ -4,7 +4,7 @@ Athletes, WODs and Gyms
 
 ## Description
 
-Track and analyse workouts and connect buddies and gyms
+Track, analyse workouts and connect everything
 
 ### Project status
 
