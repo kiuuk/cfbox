@@ -1,24 +1,11 @@
-# README
+# AWG
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Athletes, WODs and Gyms
 
-Things you may want to cover:
+## Description
 
-* Ruby version
+Track and analyse workouts and connect buddies and gyms
 
-* System dependencies
+### Project status
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Still working everyday little bit.
