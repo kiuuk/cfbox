@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Users</h1>
+    <h1>{{title}}</h1>
     <table class="table table-striped">
       <thead>
         <tr>
@@ -39,15 +39,15 @@
 import axios from "axios";
 
 export default {
-  data: function() {
+  data() {
     return {
-      message: "Yeah Vue!",
+      title: "Users",
       users: []
     };
   },
   mounted() {
     axios
-      .get("/api/v1/users")
+      .get("/users.json")
       .then(response => {
         this.users = response.data;
       })
@@ -69,9 +69,5 @@ td {
 .img-fluid {
   width: 35px;
   border-radius: 50%;
-}
-a {
-  padding: 5px;
-  color: #fff;
 }
 </style>
