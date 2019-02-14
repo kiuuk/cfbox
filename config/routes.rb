@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
+  resources :movements
+  resources :users
+  resources :affiliates
+
   root to: "home#index"
-  resources :users do
-  end
-  resources :affiliates do
-  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

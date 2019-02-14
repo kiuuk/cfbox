@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_09_123843) do
+ActiveRecord::Schema.define(version: 2019_02_14_101402) do
 
   create_table "affiliates", force: :cascade do |t|
     t.string "affiliateid", null: false
@@ -21,6 +21,15 @@ ActiveRecord::Schema.define(version: 2019_02_09_123843) do
     t.string "picture"
     t.string "website"
     t.string "sns"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "movements", force: :cascade do |t|
+    t.string "exercise"
+    t.string "equipment"
+    t.string "description"
+    t.string "link"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
