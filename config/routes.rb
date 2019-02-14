@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: "spa#index"
+  root to: "home#index"
   resources :users do
   end
   resources :affiliates do

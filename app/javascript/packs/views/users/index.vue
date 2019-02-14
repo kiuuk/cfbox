@@ -33,7 +33,9 @@
         </tr>
       </tbody>
     </table>
-    <a href="/users/new" class="badge badge-primary" title="Add new user">Add new user</a>
+    <div class="text-right p-2">
+      <a href="/users/new" class="badge badge-primary">Add new user</a>
+    </div>
   </div>
 </template>
 
@@ -49,7 +51,7 @@ export default {
     };
   },
   mounted() {
-    var that = this;
+    let that = this;
     axios
       .all([axios.get("/users.json"), axios.get("/affiliates.json")])
       .then(
