@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  score: MyString
+  score_set: MyString
+  rep: MyString
+  description: MyString
+  movement_1: MyString
+  movement_2: MyString
+  movement_3: MyString
+  movement_4: MyString
+  movement_5: MyString
+  movement_6: MyString
+  movemtnt_7: MyString
+
+two:
+  name: MyString
+  score: MyString
+  score_set: MyString
+  rep: MyString
+  description: MyString
+  movement_1: MyString
+  movement_2: MyString
+  movement_3: MyString
+  movement_4: MyString
+  movement_5: MyString
+  movement_6: MyString
+  movemtnt_7: MyString
