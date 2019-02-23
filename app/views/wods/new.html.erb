@@ -1,5 +1,14 @@
-<h1>New Wod</h1>
-
+<div id="wod-new">
+  <wod-new>
+  </wod-new>
+</div>
+<%= javascript_pack_tag 'common'%>
+<%= javascript_pack_tag 'wods/new'%>
+<%
+=begin%>
+ 
 <%= render 'form', wod: @wod %>
 
-<%= link_to 'Back', wods_path %>
+<%= link_to 'Back', wods_path %> 
+<%
+=end%>

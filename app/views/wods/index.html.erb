@@ -1,4 +1,13 @@
-<p id="notice"><%= notice %></p>
+<div id="wods-index">
+  <wods-index>
+  </wods-index>
+</div>
+<%= javascript_pack_tag 'common'%>
+<%= javascript_pack_tag 'wods/index'%>
+
+<%
+=begin%>
+ <p id="notice"><%= notice %></p>
 
 <h1>Wods</h1>
 
@@ -46,4 +55,6 @@
 
 <br>
 
-<%= link_to 'New Wod', new_wod_path %>
+<%= link_to 'New Wod', new_wod_path %> 
+<%
+=end%>
