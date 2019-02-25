@@ -3,10 +3,11 @@
     <h1>New WOD</h1>
     <form>
       <!-- name -->
-      <div class="mb-3">
+      <div class="mb-4">
         <label for="name">WOD name</label>
-        <input type="text" class="form-control" id="name" placeholder="WOD name">
+        <input type="text" class="form-control" id="name" placeholder="WOD name" autocomplete="off">
       </div>
+      <hr class="mb-4">
       <!-- score -->
       <div class="row">
         <div class="col-12 mb-3">
@@ -42,9 +43,17 @@
       <!-- movements -->
       <div class="mb-3">
         <label for="movement_1">Movements</label>
-        <ComponentMovement :rep_select="rep_select"></ComponentMovement>
+        <ComponentMovement
+          :rep_select="rep_select"
+          v-for="(component_movement, idx) in component_movements"
+          :key="idx"
+        ></ComponentMovement>
         <div class="mt-2 mb-3 text-right">
-          <button type="button" class="btn btn-secondary btn-sm">Add movement</button>
+          <button
+            type="button"
+            @click="addComponentMovement"
+            class="btn btn-secondary btn-sm"
+          >Add movement</button>
         </div>
       </div>
       <hr class="mb-4">
@@ -79,8 +88,17 @@ export default {
       reps: [
         { text: "Rep by each movement", value: 0 },
         { text: "Set Routine Rep", value: 1 }
-      ]
+      ],
+      component_movements: [{ id: 0 }],
+      component_count: 1
     };
+  },
+  methods: {
+    addComponentMovement() {
+      this.component_movements.push({
+        id: this.component_count++
+      });
+    }
   }
 };
 </script>

@@ -1,23 +1,27 @@
 <template>
-  <div class="d-flex">
+  <div class="d-flex mb-2">
     <input type="number" class="form-control mr-2 w-25" placeholder="rep" v-show="rep_select === 0">
     <div class="w-100 position-relative">
       <input
         type="text"
         class="form-control w-100"
-        id="movement_1"
         placeholder="movement"
+        autocomplete="off"
         v-model="search"
         @input="onChange"
+        @keydown.down="onArrowDown"
+        @keydown.up="onArrowUp"
+        @keydown.enter="onEnter"
       >
-      <div class="list-group position-absolute" v-show="isOpen">
-        <a
-          href="#"
+      <ul class="list-group position-absolute" v-show="isOpen">
+        <li
           class="list-group-item list-group-item-action"
-          v-for="result in results"
-          :key="result.id"
-        >{{result.exercise}}</a>
-      </div>
+          v-for="(result, idx) in results"
+          :key="idx"
+          @click="setResult(result)"
+          :class="{ 'is-active': idx === arrowCounter }"
+        >{{result.exercise}}</li>
+      </ul>
     </div>
   </div>
 </template>
@@ -32,6 +36,7 @@ export default {
       search: "",
       results: [],
       isOpen: false,
+      arrowCounter: -1,
       movements: []
     };
   },
@@ -49,7 +54,7 @@ export default {
   },
   methods: {
     onChange() {
-      this.isOpen = true;
+      this.search == "" ? (this.isOpen = false) : (this.isOpen = true);
       this.filterResults();
     },
     filterResults() {
@@ -57,6 +62,25 @@ export default {
         mvmt =>
           mvmt.exercise.toLowerCase().indexOf(this.search.toLowerCase()) > -1
       );
+    },
+    setResult(result) {
+      this.search = result.exercise;
+      this.isOpen = false;
+    },
+    onArrowDown() {
+      if (this.arrowCounter < this.results.length - 1) {
+        this.arrowCounter = this.arrowCounter + 1;
+      }
+    },
+    onArrowUp() {
+      if (this.arrowCounter < this.results.length && this.arrowCounter > 0) {
+        this.arrowCounter = this.arrowCounter - 1;
+      }
+    },
+    onEnter() {
+      this.search = this.results[this.arrowCounter].exercise;
+      this.isOpen = false;
+      this.arrowCounter = -1;
     }
   }
   // computed: {
