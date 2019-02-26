@@ -1,6 +1,11 @@
 <template>
   <div class="d-flex mb-2">
-    <input type="number" class="form-control mr-2 w-25" placeholder="rep" v-show="rep_select === 0">
+    <input
+      type="number"
+      class="form-control mr-2 w-25"
+      placeholder="rep"
+      v-show="rep_select === 'rep'"
+    >
     <div class="w-100 position-relative">
       <input
         type="text"
