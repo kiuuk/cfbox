@@ -41,6 +41,7 @@
         <div class="col-12 mb-3">
           <label for="rep">Representative</label>
           <select v-model="wod.rep" class="custom-select d-block w-100" id="rep">
+            <option value disabled selected>Select</option>
             <option v-for="rep in reps" :key="rep.id" :value="rep.value">{{rep.text}}</option>
           </select>
         </div>
@@ -60,11 +61,21 @@
       <!-- movements -->
       <div class="mb-3">
         <label for="movement_1">Movements</label>
-        <ComponentMovement
-          :rep_select="wod.rep"
-          v-for="(component_movement, idx) in component_movements"
-          :key="idx"
-        ></ComponentMovement>
+        <div class="d-flex mb-2">
+          <input
+            type="number"
+            class="form-control mr-2 w-25"
+            placeholder="rep"
+            v-show="wod.rep === 'rep'"
+          >
+          <div class="w-100 position-relative">
+            <select v-model="wod.movement_1" class="custom-select d-block w-100">
+              <option value disabled selected>Select</option>
+              <option v-for="movement in movementsList" :key="movement.id">{{movement.exercise}}</option>
+            </select>
+          </div>
+        </div>
+        <!-- add btn -->
         <div class="mt-2 mb-3 text-right">
           <button
             type="button"
@@ -93,14 +104,11 @@
 
 <script>
 import axios from "axios";
-import ComponentMovement from "./component_movement";
 
 export default {
-  components: {
-    ComponentMovement: ComponentMovement
-  },
   data() {
     return {
+      movements: [],
       scores: [
         { text: "For Time", value: "FT" },
         { text: "AMRAP", value: "AMRAP" },
@@ -128,6 +136,25 @@ export default {
       this.component_movements.push({
         id: this.component_count++
       });
+    }
+  },
+  mounted() {
+    axios
+      .get("/movements.json")
+      .then(response => {
+        this.movements = response.data;
+      })
+      .catch(error => {
+        console.log(error);
+        this.errored = true;
+      })
+      .finally(() => (this.loading = false));
+  },
+  computed: {
+    movementsList() {
+      return this.movements.sort((a, b) =>
+        a.exercise > b.exercise ? 1 : b.exercise > a.exercise ? -1 : 0
+      );
     }
   }
 };

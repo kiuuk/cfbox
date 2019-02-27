@@ -71,6 +71,7 @@ export default {
     setResult(result) {
       this.search = result.exercise;
       this.isOpen = false;
+      $emit("wod", result.exercise);
     },
     onArrowDown() {
       if (this.arrowCounter < this.results.length - 1) {
@@ -86,6 +87,7 @@ export default {
       this.search = this.results[this.arrowCounter].exercise;
       this.isOpen = false;
       this.arrowCounter = -1;
+      this.$emit("wod", this.value);
     }
   }
   // computed: {
