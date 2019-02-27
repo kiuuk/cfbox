@@ -4,29 +4,13 @@
       type="number"
       class="form-control mr-2 w-25"
       placeholder="rep"
-      v-show="rep_select === 'rep'"
+      v-show="wod.rep === 'rep'"
     >
     <div class="w-100 position-relative">
-      <input
-        type="text"
-        class="form-control w-100"
-        placeholder="movement"
-        autocomplete="off"
-        v-model="search"
-        @input="onChange"
-        @keydown.down="onArrowDown"
-        @keydown.up="onArrowUp"
-        @keydown.enter="onEnter"
-      >
-      <ul class="list-group position-absolute" v-show="isOpen">
-        <li
-          class="list-group-item list-group-item-action"
-          v-for="(result, idx) in results"
-          :key="idx"
-          @click="setResult(result)"
-          :class="{ 'is-active': idx === arrowCounter }"
-        >{{result.exercise}}</li>
-      </ul>
+      <select v-model="wod.movement_1" class="custom-select d-block w-100">
+        <option value disabled selected>Select movement</option>
+        <option v-for="movement in movementsList" :key="movement.id">{{movement.exercise}}</option>
+      </select>
     </div>
   </div>
 </template>
@@ -35,13 +19,9 @@
 import axios from "axios";
 
 export default {
-  props: ["rep_select"],
+  props: ["wod"],
   data() {
     return {
-      search: "",
-      results: [],
-      isOpen: false,
-      arrowCounter: -1,
       movements: []
     };
   },
@@ -57,46 +37,13 @@ export default {
       })
       .finally(() => (this.loading = false));
   },
-  methods: {
-    onChange() {
-      this.search == "" ? (this.isOpen = false) : (this.isOpen = true);
-      this.filterResults();
-    },
-    filterResults() {
-      this.results = this.movements.filter(
-        mvmt =>
-          mvmt.exercise.toLowerCase().indexOf(this.search.toLowerCase()) > -1
+  computed: {
+    movementsList() {
+      return this.movements.sort((a, b) =>
+        a.exercise > b.exercise ? 1 : b.exercise > a.exercise ? -1 : 0
       );
-    },
-    setResult(result) {
-      this.search = result.exercise;
-      this.isOpen = false;
-      $emit("wod", result.exercise);
-    },
-    onArrowDown() {
-      if (this.arrowCounter < this.results.length - 1) {
-        this.arrowCounter = this.arrowCounter + 1;
-      }
-    },
-    onArrowUp() {
-      if (this.arrowCounter < this.results.length && this.arrowCounter > 0) {
-        this.arrowCounter = this.arrowCounter - 1;
-      }
-    },
-    onEnter() {
-      this.search = this.results[this.arrowCounter].exercise;
-      this.isOpen = false;
-      this.arrowCounter = -1;
-      this.$emit("wod", this.value);
     }
   }
-  // computed: {
-  //   movementsList() {
-  //     return this.movements.sort((a, b) =>
-  //       a.exercise > b.exercise ? 1 : b.exercise > a.exercise ? -1 : 0
-  //     );
-  //   }
-  // }
 };
 </script>
 
