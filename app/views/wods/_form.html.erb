@@ -1,0 +1,77 @@
+<%= form_with(model: wod, local: true) do |form| %>
+  <% if wod.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(wod.errors.count, "error") %> prohibited this wod from being saved:</h2>
+
+      <ul>
+      <% wod.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :score %>
+    <%= form.text_field :score %>
+  </div>
+
+  <div class="field">
+    <%= form.label :score_set %>
+    <%= form.text_field :score_set %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rep %>
+    <%= form.text_field :rep %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :movement_1 %>
+    <%= form.text_field :movement_1 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :movement_2 %>
+    <%= form.text_field :movement_2 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :movement_3 %>
+    <%= form.text_field :movement_3 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :movement_4 %>
+    <%= form.text_field :movement_4 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :movement_5 %>
+    <%= form.text_field :movement_5 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :movement_6 %>
+    <%= form.text_field :movement_6 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :movemtnt_7 %>
+    <%= form.text_field :movemtnt_7 %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
