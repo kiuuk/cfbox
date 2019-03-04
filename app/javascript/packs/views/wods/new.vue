@@ -66,7 +66,12 @@
       <!-- movements -->
       <div class="mb-3">
         <label for="movement_1">Movements</label>
-        <ComponentMovement :wod="wod"></ComponentMovement>
+        <ComponentMovement
+          :wod="wod"
+          v-for="component in component_movements"
+          :key="component.id"
+          v-on:triggerChange="changeSelect"
+        ></ComponentMovement>
         <!-- add btn -->
         <div class="mt-2 mb-3 text-right">
           <button
@@ -103,7 +108,7 @@ export default {
   },
   data() {
     return {
-      component_movements: [{ id: 0 }],
+      component_movements: [{ id: 0, value: this.selected }],
       component_count: 1,
       wod: {
         name: "",
@@ -123,8 +128,13 @@ export default {
   methods: {
     addComponentMovement() {
       this.component_movements.push({
-        id: this.component_count++
+        id: this.component_count++,
+        value: ""
       });
+    },
+    changeSelect(selected) {
+      let idx = this.component_count - 1;
+      this.component_movements[idx].value = selected;
     }
   }
 };

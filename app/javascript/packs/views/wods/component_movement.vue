@@ -7,7 +7,7 @@
       v-show="wod.rep === 'rep'"
     >
     <div class="w-100 position-relative">
-      <select v-model="wod.movement_1" class="custom-select d-block w-100">
+      <select v-model="selected" v-on:change="applySelect" class="custom-select d-block w-100">
         <option value disabled selected>Select movement</option>
         <option v-for="movement in movementsList" :key="movement.id">{{movement.exercise}}</option>
       </select>
@@ -22,6 +22,7 @@ export default {
   props: ["wod"],
   data() {
     return {
+      selected: "",
       movements: []
     };
   },
@@ -42,6 +43,11 @@ export default {
       return this.movements.sort((a, b) =>
         a.exercise > b.exercise ? 1 : b.exercise > a.exercise ? -1 : 0
       );
+    }
+  },
+  methods: {
+    applySelect() {
+      this.$emit("triggerChange", this.selected);
     }
   }
 };
