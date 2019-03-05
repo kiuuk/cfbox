@@ -70,7 +70,7 @@
           :wod="wod"
           v-for="component in component_movements"
           :key="component.id"
-          v-on:triggerChange="changeSelect"
+          @triggerChange="changeSelect"
         ></ComponentMovement>
         <!-- add btn -->
         <div class="mt-2 mb-3 text-right">
@@ -108,7 +108,7 @@ export default {
   },
   data() {
     return {
-      component_movements: [{ id: 0, value: this.selected }],
+      component_movements: [{ id: 0, value: "" }],
       component_count: 1,
       wod: {
         name: "",
@@ -116,11 +116,7 @@ export default {
         score_set: "",
         rep: "",
         description: "",
-        movement_1: "",
-        movement_2: "",
-        movement_3: "",
-        movement_4: "",
-        movement_5: "",
+        movements: "",
         routine: ""
       }
     };
@@ -133,8 +129,10 @@ export default {
       });
     },
     changeSelect(selected) {
-      let idx = this.component_count - 1;
-      this.component_movements[idx].value = selected;
+      // let idx = this.component_movements;
+      // console.log(selected);
+      // this.component_movements[idx].value = selected;
+      this.wod.movements = this.wod.movements + selected;
     }
   }
 };

@@ -4,10 +4,11 @@
       type="number"
       class="form-control mr-2 w-25"
       placeholder="rep"
+      v-model="repEach"
       v-show="wod.rep === 'rep'"
     >
     <div class="w-100 position-relative">
-      <select v-model="selected" v-on:change="applySelect" class="custom-select d-block w-100">
+      <select v-model="selected" @change="applySelect" class="custom-select d-block w-100">
         <option value disabled selected>Select movement</option>
         <option v-for="movement in movementsList" :key="movement.id">{{movement.exercise}}</option>
       </select>
@@ -22,6 +23,7 @@ export default {
   props: ["wod"],
   data() {
     return {
+      repEach: "",
       selected: "",
       movements: []
     };
@@ -47,7 +49,10 @@ export default {
   },
   methods: {
     applySelect() {
-      this.$emit("triggerChange", this.selected);
+      let rep = this.repEach;
+      rep != ""
+        ? this.$emit("triggerChange", rep + " " + this.selected)
+        : this.$emit("triggerChange", this.selected);
     }
   }
 };
