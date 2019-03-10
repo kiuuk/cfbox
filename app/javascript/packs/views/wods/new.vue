@@ -66,7 +66,13 @@
       <!-- movements -->
       <div class="mb-3">
         <label for="movement_1">Movements</label>
-        <ComponentMovement :wod="wod"></ComponentMovement>
+        <ComponentMovement
+          :wod="wod"
+          v-for="component in component_movements"
+          :key="component.id"
+          :component_movement="component"
+          @triggerChange="changeSelect"
+        ></ComponentMovement>
         <!-- add btn -->
         <div class="mt-2 mb-3 text-right">
           <button
@@ -103,19 +109,15 @@ export default {
   },
   data() {
     return {
-      component_movements: [{ id: 0 }],
-      component_count: 1,
+      component_movements: [],
+      component_count: 0,
       wod: {
         name: "",
         score: "",
         score_set: "",
         rep: "",
         description: "",
-        movement_1: "",
-        movement_2: "",
-        movement_3: "",
-        movement_4: "",
-        movement_5: "",
+        movements: "",
         routine: ""
       }
     };
@@ -123,8 +125,13 @@ export default {
   methods: {
     addComponentMovement() {
       this.component_movements.push({
-        id: this.component_count++
+        id: this.component_count++,
+        rep: "",
+        value: ""
       });
+    },
+    changeSelect(selected) {
+      console.log(selected);
     }
   }
 };
