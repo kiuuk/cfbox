@@ -126,6 +126,7 @@ export default {
     addComponentMovement() {
       this.component_movements.push({
         id: this.component_count++,
+        rep: "",
         value: ""
       });
     },

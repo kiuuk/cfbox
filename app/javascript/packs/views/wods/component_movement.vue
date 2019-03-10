@@ -4,7 +4,7 @@
       type="number"
       class="form-control mr-2 w-25"
       placeholder="rep"
-      v-model="repEach"
+      v-model="component_movement.rep"
       v-show="wod.rep === 'rep'"
     >
     <div class="w-100 position-relative">
@@ -27,7 +27,6 @@ export default {
   props: ["wod", "component_movement"],
   data() {
     return {
-      repEach: "",
       movements: []
     };
   },
@@ -52,7 +51,7 @@ export default {
   },
   methods: {
     applySelect() {
-      let rep = this.repEach;
+      let rep = this.component_movement.rep;
       rep != ""
         ? this.$emit("triggerChange", rep + " " + this.component_movement.value)
         : this.$emit("triggerChange", this.component_movement.value);
