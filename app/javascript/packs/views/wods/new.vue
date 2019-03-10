@@ -70,7 +70,7 @@
           :wod="wod"
           v-for="component in component_movements"
           :key="component.id"
-          ref="movement"
+          :component_movement="component"
           @triggerChange="changeSelect"
         ></ComponentMovement>
         <!-- add btn -->
@@ -109,8 +109,8 @@ export default {
   },
   data() {
     return {
-      component_movements: [{ id: 0, value: "" }],
-      component_count: 1,
+      component_movements: [],
+      component_count: 0,
       wod: {
         name: "",
         score: "",
@@ -130,10 +130,7 @@ export default {
       });
     },
     changeSelect(selected) {
-      let idx = this.id;
-      console.log(idx);
-      console.log(this.movement);
-      // this.component_movements[idx].value = selected;
+      console.log(selected);
     }
   }
 };

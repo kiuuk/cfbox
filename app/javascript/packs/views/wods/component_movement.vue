@@ -8,7 +8,11 @@
       v-show="wod.rep === 'rep'"
     >
     <div class="w-100 position-relative">
-      <select v-model="selected" @change="applySelect" class="custom-select d-block w-100">
+      <select
+        v-model="component_movement.value"
+        @change="applySelect"
+        class="custom-select d-block w-100"
+      >
         <option value disabled selected>Select movement</option>
         <option v-for="movement in movementsList" :key="movement.id">{{movement.exercise}}</option>
       </select>
@@ -20,11 +24,10 @@
 import axios from "axios";
 
 export default {
-  props: ["wod"],
+  props: ["wod", "component_movement"],
   data() {
     return {
       repEach: "",
-      selected: "",
       movements: []
     };
   },
@@ -51,8 +54,8 @@ export default {
     applySelect() {
       let rep = this.repEach;
       rep != ""
-        ? this.$emit("triggerChange", rep + " " + this.selected)
-        : this.$emit("triggerChange", this.selected);
+        ? this.$emit("triggerChange", rep + " " + this.component_movement.value)
+        : this.$emit("triggerChange", this.component_movement.value);
     }
   }
 };
