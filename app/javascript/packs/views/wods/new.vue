@@ -117,8 +117,14 @@ export default {
   },
   data() {
     return {
-      component_movements: [],
-      component_count: 0,
+      component_movements: [
+        {
+          id: 0,
+          rep: "",
+          value: ""
+        }
+      ],
+      component_count: 1,
       wod: {
         name: "",
         score: "",

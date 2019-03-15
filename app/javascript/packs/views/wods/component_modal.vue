@@ -4,7 +4,7 @@
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Modal title</h5>
+            <h5 class="modal-title">WOD preview</h5>
             <button
               @click="close"
               type="button"
@@ -15,7 +15,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">...</div>
+          <div class="modal-body">{{wod.name}}</div>
           <div class="modal-footer">
             <button
               @click="close"
