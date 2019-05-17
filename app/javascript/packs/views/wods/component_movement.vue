@@ -1,21 +1,23 @@
 <template>
   <div class="d-flex mb-2">
-    <input
+    <div  v-for="movement in wod.movements" :key="movement.id">
+      <input
       type="number"
       class="form-control mr-2 w-25"
       placeholder="rep"
-      v-model="component_movement.rep"
+      v-model="movement.rep"
       v-show="wod.rep === 'rep'"
-    >
-    <div class="w-100 position-relative">
-      <select
-        v-model="component_movement.value"
-        @change="applySelect"
-        class="custom-select d-block w-100"
       >
-        <option value disabled selected>Select movement</option>
-        <option v-for="movement in movementsList" :key="movement.id">{{movement.exercise}}</option>
-      </select>
+      <div class="w-100 position-relative">
+        <select
+          v-model="movement.value"
+          @change="applySelect"
+          class="custom-select d-block w-100"
+        >
+          <option value disabled selected>Select movement</option>
+          <option v-for="movementList in movementsList" :key="movementList.id">{{movementList.exercise}}</option>
+        </select>
+      </div>
     </div>
   </div>
 </template>
@@ -24,7 +26,7 @@
 import axios from "axios";
 
 export default {
-  props: ["wod", "component_movement"],
+  props: ["wod"],
   data() {
     return {
       movements: []

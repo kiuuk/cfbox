@@ -15,7 +15,21 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">{{wod.name}}</div>
+          <div class="modal-body">
+            <dl>
+              <dt>{{wod.name}}</dt>
+              <dd>{{wod.score}} {{wod.score_set}} minutes</dd>
+              <dd v-if="wod.routine">{{wod.routine}}</dd>
+              <dd>
+                <ul>
+                  <li v-for="movement in wod.movements" :key="movement.id">
+                    <span v-if="movement.rep">{{movement.rep}}</span> {{movement.value}}
+                  </li>
+                </ul>
+              </dd>
+              <dd v-if="wod.description">{{wod.description}}</dd>
+            </dl>
+          </div>
           <div class="modal-footer">
             <button
               @click="close"
