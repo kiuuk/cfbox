@@ -4,7 +4,7 @@
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Modal title</h5>
+            <h5 class="modal-title">WOD preview</h5>
             <button
               @click="close"
               type="button"
@@ -15,7 +15,22 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">...</div>
+          <div class="modal-body">
+            <dl>
+              <dt>{{wod.name}}</dt>
+              <dd>{{wod.score}} {{wod.score_set}} minutes</dd>
+              <dd v-if="wod.rep === 'routine'">{{wod.routine}}</dd>
+              <dd>
+                <ul>
+                  <li v-for="movement in wod.movements" :key="movement.id">
+                    <span v-if="wod.rep === 'rep'">{{movement.rep}}</span>
+                    {{movement.value}}
+                  </li>
+                </ul>
+              </dd>
+              <dd v-if="wod.description">{{wod.description}}</dd>
+            </dl>
+          </div>
           <div class="modal-footer">
             <button
               @click="close"

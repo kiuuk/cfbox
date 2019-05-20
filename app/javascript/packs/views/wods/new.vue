@@ -24,7 +24,6 @@
             <option value="FT">For Time</option>
             <option value="AMRAP">AMRAP</option>
             <option value="EMOM">EMOM</option>
-            <!-- <option v-for="score in scores" :key="score.id" :value="score.value">{{score.text}}</option> -->
           </select>
         </div>
         <!-- timer -->
@@ -66,19 +65,28 @@
       <!-- movements -->
       <div class="mb-3">
         <label for="movement_1">Movements</label>
-        <ComponentMovement
-          :wod="wod"
-          v-for="component in component_movements"
-          :key="component.id"
-          :component_movement="component"
-          @triggerChange="changeSelect"
-        ></ComponentMovement>
+        <div class="d-flex mb-2" v-for="movement in wod.movements" :key="movement.index">
+          <input
+            type="number"
+            class="form-control mr-2 w-25"
+            placeholder="rep"
+            v-model="movement.rep"
+            v-if="wod.rep === 'rep'"
+          >
+          <div class="w-100 position-relative">
+            <select v-model="movement.value" class="custom-select d-block w-100">
+              <option value disabled selected>Select movement</option>
+              <option v-for="exercise in exercisesList" :key="exercise.id">{{exercise.exercise}}</option>
+            </select>
+          </div>
+          <button type="button" @click="delComponentMovement(movement.id)" class="btn btn-link">X</button>
+        </div>
         <!-- add btn -->
         <div class="mt-2 mb-3 text-right">
           <button
             type="button"
             @click="addComponentMovement"
-            class="btn btn-secondary btn-sm"
+            class="btn btn-secondary btn-sm add-movement"
           >Add movement</button>
         </div>
       </div>
@@ -95,11 +103,7 @@
         ></textarea>
       </div>
       <!-- preview -->
-      <button
-        @click="showModal"
-        class="btn btn-secondary btn-lg btn-block"
-        type="button"
-      >Preview WOD</button>
+      <button @click="showModal" class="btn btn-primary btn-lg btn-block" type="button">Preview WOD</button>
       <!-- modal -->
       <ComponentModal :wod="wod" v-show="isModalVisible" @close="closeModal"></ComponentModal>
     </form>
@@ -107,40 +111,70 @@
 </template>
 
 <script>
-import ComponentMovement from "./component_movement";
+import axios from "axios";
 import ComponentModal from "./component_modal";
 
 export default {
   components: {
-    ComponentMovement: ComponentMovement,
     ComponentModal: ComponentModal
   },
   data() {
     return {
-      component_movements: [],
-      component_count: 0,
+      isModalVisible: false,
+      exercisesJson: [],
+      movnum: 1,
       wod: {
         name: "",
         score: "",
         score_set: "",
+        routine: "",
         rep: "",
-        description: "",
-        movements: "",
-        routine: ""
-      },
-      isModalVisible: false
+        movements: [
+          {
+            id: 0,
+            rep: "",
+            value: ""
+          }
+        ],
+        description: ""
+      }
     };
+  },
+  mounted() {
+    axios
+      .get("/movements.json")
+      .then(response => {
+        this.exercisesJson = response.data;
+      })
+      .catch(error => {
+        console.log(error);
+        this.errored = true;
+      })
+      .finally(() => (this.loading = false));
+  },
+  computed: {
+    exercisesList() {
+      return this.exercisesJson.sort((a, b) =>
+        a.exercise > b.exercise ? 1 : b.exercise > a.exercise ? -1 : 0
+      );
+    }
   },
   methods: {
     addComponentMovement() {
-      this.component_movements.push({
-        id: this.component_count++,
+      this.wod.movements.push({
+        id: this.movnum++,
         rep: "",
         value: ""
       });
     },
-    changeSelect(selected) {
-      console.log(selected);
+    delComponentMovement(e) {
+      let idx = "";
+      this.wod.movements.forEach(function(item, index) {
+        if (item.id === e) {
+          return (idx = index);
+        }
+      });
+      this.wod.movements.splice(idx, 1);
     },
     showModal() {
       this.isModalVisible = true;
@@ -152,5 +186,10 @@ export default {
 };
 </script>
 
-<style>
+<style lang="sass">
+  .btn-link {
+    color:#545b62;
+    &:hover {text-decoration: none;}
+    }
+  .add-movement {margin-right: 36px;}
 </style>
