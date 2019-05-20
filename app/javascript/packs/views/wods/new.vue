@@ -94,18 +94,26 @@
           rows="5"
         ></textarea>
       </div>
-      <!-- submit -->
-      <button class="btn btn-primary btn-lg btn-block" type="submit">Add WOD</button>
+      <!-- preview -->
+      <button
+        @click="showModal"
+        class="btn btn-secondary btn-lg btn-block"
+        type="button"
+      >Preview WOD</button>
+      <!-- modal -->
+      <ComponentModal :wod="wod" v-show="isModalVisible" @close="closeModal"></ComponentModal>
     </form>
   </div>
 </template>
 
 <script>
 import ComponentMovement from "./component_movement";
+import ComponentModal from "./component_modal";
 
 export default {
   components: {
-    ComponentMovement: ComponentMovement
+    ComponentMovement: ComponentMovement,
+    ComponentModal: ComponentModal
   },
   data() {
     return {
@@ -119,7 +127,8 @@ export default {
         description: "",
         movements: "",
         routine: ""
-      }
+      },
+      isModalVisible: false
     };
   },
   methods: {
@@ -132,6 +141,12 @@ export default {
     },
     changeSelect(selected) {
       console.log(selected);
+    },
+    showModal() {
+      this.isModalVisible = true;
+    },
+    closeModal() {
+      this.isModalVisible = false;
     }
   }
 };
