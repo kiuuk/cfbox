@@ -19,11 +19,12 @@
             <dl>
               <dt>{{wod.name}}</dt>
               <dd>{{wod.score}} {{wod.score_set}} minutes</dd>
-              <dd v-if="wod.routine">{{wod.routine}}</dd>
+              <dd v-if="wod.rep === 'routine'">{{wod.routine}}</dd>
               <dd>
                 <ul>
                   <li v-for="movement in wod.movements" :key="movement.id">
-                    <span v-if="movement.rep">{{movement.rep}}</span> {{movement.value}}
+                    <span v-if="wod.rep === 'rep'">{{movement.rep}}</span>
+                    {{movement.value}}
                   </li>
                 </ul>
               </dd>
