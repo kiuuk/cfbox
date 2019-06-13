@@ -38,7 +38,7 @@
               class="btn btn-secondary"
               data-dismiss="modal"
             >Close</button>
-            <button type="button" class="btn btn-primary">Save WOD</button>
+            <button type="button" class="btn btn-primary" @click="addWod">Save WOD</button>
           </div>
         </div>
       </div>
@@ -47,16 +47,29 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   props: ["wod"],
   name: "modal",
   data() {
-    return {};
+    return {
+    };
   },
   methods: {
     close() {
       this.$emit("close");
+    },
+    addWod() {
+      axios.post('/wods', this.wod)
+      .then(function(response) {
+        console.log(response);
+      })
+      .catch(function(error) {
+        console.log(error);
+      })
     }
+    
   }
 };
 </script>
